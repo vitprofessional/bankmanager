@@ -53,7 +53,7 @@ class CalculasController extends Controller
         return view('adminPanel.createEmployee',['data'=>$bankEmployee]);
     }
 
-    public function registerEmployee(Request $requ){
+    public function employeeRegister(Request $requ){
         $data = new BankEmployee();
         $data->name         = $requ->employeeName;
         $data->email        = $requ->employeeMail;
