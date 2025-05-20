@@ -16,6 +16,7 @@ return new class extends Migration
             $table->text('details')->nullable();
             $table->text('amount')->nullable();
             $table->text('txnType')->nullable();
+            $table->string('employee_id')->nullable();
             $table->timestamps();
         });
     }

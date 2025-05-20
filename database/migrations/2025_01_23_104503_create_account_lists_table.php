@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('acMobile')->nullable();
             $table->string('acFinger')->nullable();
             $table->string('acStatus')->nullable();
+            $table->string('employee_id')->nullable();
             $table->timestamps();
         });
     }

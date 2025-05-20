@@ -16,6 +16,7 @@ return new class extends Migration
             $table->text('ob')->nullable();
             $table->text('cb')->nullable();
             $table->text('lastBalance')->nullable();
+            $table->string('employee_id')->nullable();
             $table->timestamps();
         });
     }

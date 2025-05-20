@@ -68,6 +68,26 @@ Route::post('/generateReport/getData',[
     'getData'
 ])->name('getData');
 
+Route::get('/employee/list',[
+    CalculasController::class,
+    'bankEmployee'
+])->name('bankEmployee');
+
+Route::post('/register/employee',[
+    CalculasController::class,
+    'employeeRegister'
+])->name('employeeRegister');
+
+Route::get('/employee/edit/{id}',[
+    DebitCreditController::class,
+    'editEmployee'
+])->name('editEmployee');
+
+Route::get('/employee/del/{id}',[
+    DebitCreditController::class,
+    'delEmployee'
+])->name('delEmployee');
+
 Route::get('/debit-credit',[
     CalculasController::class,
     'debitCredit'

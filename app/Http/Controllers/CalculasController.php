@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\BankCapital;
+use App\Models\BankEmployee;
 
 class CalculasController extends Controller
 {
@@ -45,5 +46,24 @@ class CalculasController extends Controller
     
     public function debitCredit(){
         return view('adminPanel.debitCredit');
+    }
+    
+    public function bankEmployee(){
+        $bankEmployee = BankEmployee::orderBy('id','desc')->get();
+        return view('adminPanel.createEmployee',['data'=>$bankEmployee]);
+    }
+
+    public function registerEmployee(Request $requ){
+        $data = new BankEmployee();
+        $data->name         = $requ->employeeName;
+        $data->email        = $requ->employeeMail;
+        $data->employeeId   = $requ->loginId;
+        $hashPass           = Hash::make($requ->loginPass);
+        $data->password     = $hashPass;
+        if($data->save()):
+            return back()->with('success','Success! Employee details saved successfully');
+        else:
+            return back()->with('error','Sorry! Employee details failed to save');
+        endif;
     }
 }

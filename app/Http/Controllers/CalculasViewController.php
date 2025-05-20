@@ -10,7 +10,7 @@ use Session;
 class CalculasViewController extends Controller
 {
     public function index(){
-        $check  = BankEmployee::orderBy('id','DESC')->first();
+        $check  = BankEmployee::all();
         return view('adminPanel.login',['employee'=>$check]);
     }
     public function registerCalculas(Request $requ){
