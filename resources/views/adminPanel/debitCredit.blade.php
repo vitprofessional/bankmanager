@@ -20,6 +20,7 @@
                 </div>
             </div>
             @php
+                $employee_id = 1;
                 if(isset($data)):
                     $amount     = $data->amount;
                     $details    = $data->details;
@@ -76,7 +77,7 @@
                     <tbody>
                         @php
                             $today  = date('Y-m-d');
-                            $data   = \App\Models\DebitCredit::whereDate('created_at',$today)->orderBy('id','DESC')->get();
+                            $data   = \App\Models\DebitCredit::whereDate('created_at',$today)->where(['employee_id'=>$employee_id])->orderBy('id','DESC')->get();
                             $x = 1;
                         @endphp
                         @if(isset($data) && count($data)>0)

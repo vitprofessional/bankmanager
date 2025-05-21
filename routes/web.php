@@ -6,6 +6,7 @@ use App\Http\Controllers\CalculasReportController;
 use App\Http\Controllers\DebitCreditController;
 use App\Http\Controllers\CalculasController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\ServerConfiguration;
 
 /*
 |--------------------------------------------------------------------------
@@ -143,3 +144,35 @@ Route::get('/account/del/{id}',[
     FrontController::class,
     'acDelete'
 ])->name('acDelete');
+
+
+// server configuration routes
+Route::get('/server/configuratoin/',[
+    ServerConfiguration::class,
+    'serverConfig'
+])->name('serverConfig');
+
+Route::get('/server/user/profile/',[
+    ServerConfiguration::class,
+    'userProfile'
+])->name('userProfile');
+
+Route::get('/server/user/password/change/',[
+    ServerConfiguration::class,
+    'changeUserPass'
+])->name('changeUserPass');
+
+Route::post('/server/configuratoin/save',[
+    ServerConfiguration::class,
+    'saveServerConfig'
+])->name('saveServerConfig');
+
+Route::post('/server/user/profile/save/',[
+    ServerConfiguration::class,
+    'saveUserProfile'
+])->name('saveUserProfile');
+
+Route::post('/server/user/password/save/',[
+    ServerConfiguration::class,
+    'saveUserPass'
+])->name('saveUserPass');

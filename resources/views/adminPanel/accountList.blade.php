@@ -35,7 +35,8 @@
                     </thead>
                     <tbody>
                         @php
-                            $data   = \App\Models\AccountList::orderBy('id','DESC')->get();
+                        $employee_id = 1;
+                            $data   = \App\Models\AccountList::where(['employee_id'=>$employee_id])->orderBy('id','DESC')->get();
                             $x = 1;
                         @endphp
                         @if(!empty($data) && count((array)$data)>0)
