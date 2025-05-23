@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Models\ServerConfiguration;
+use App\Models\ServerConfig;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
     {
         view()->composer('*',function($view){
             $employee_id = 1;
-            $server = ServerConfiguration::where(['employee_id'=>$employee_id])->first();
+            $server = ServerConfig::where(['employee_id'=>$employee_id])->first();
             $view->with(['serverData'=>$server]);
         });
     }

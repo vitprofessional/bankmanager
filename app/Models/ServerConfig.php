@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ServerConfiguration extends Model
+class ServerConfig extends Model
 {
     //
 }

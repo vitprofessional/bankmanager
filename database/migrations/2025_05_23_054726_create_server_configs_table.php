@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('server_configurations', function (Blueprint $table) {
+        Schema::create('server_configs', function (Blueprint $table) {
             $table->id();
             $table->string('business_name')->nullable();
             $table->string('location')->nullable();
@@ -43,6 +43,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('server_configurations');
+        Schema::dropIfExists('server_configs');
     }
 };

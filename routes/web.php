@@ -167,6 +167,21 @@ Route::post('/server/configuratoin/save',[
     'saveServerConfig'
 ])->name('saveServerConfig');
 
+Route::post('/server/configuratoin/bankLogo/update',[
+    ServerConfiguration::class,
+    'saveBankLogo'
+])->name('saveBankLogo');
+
+Route::post('/server/configuratoin/secondLogo/update',[
+    ServerConfiguration::class,
+    'saveSecondLogo'
+])->name('saveSecondLogo');
+
+Route::post('/server/configuratoin/thirdLogo/update',[
+    ServerConfiguration::class,
+    'saveThirdLogo'
+])->name('saveThirdLogo');
+
 Route::post('/server/user/profile/save/',[
     ServerConfiguration::class,
     'saveUserProfile'
