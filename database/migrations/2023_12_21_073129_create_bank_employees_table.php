@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('nidNumber')->nullable();
             $table->text('password')->nullable();
             $table->text('employeeId')->nullable();
+            $table->text('profileType')->nullable();
             $table->timestamps();
         });
     }

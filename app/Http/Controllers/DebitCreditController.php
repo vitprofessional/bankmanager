@@ -8,15 +8,17 @@ use App\Models\DebitCredit;
 class DebitCreditController extends Controller
 {
     public function saveDebitCredit(Request $requ){
+        $employee_id = $requ->employeeId;
         $dcId = $requ->dcId;
         if(!empty($dcId)):
             $data   = DebitCredit::find($dcId);
         else:
             $data   = new DebitCredit();
         endif;
-        $data->amount   = $requ->amount;  
-        $data->details  = $requ->note;  
-        $data->txnType  = $requ->txnType;
+        $data->amount       = $requ->amount;  
+        $data->details      = $requ->note;  
+        $data->txnType      = $requ->txnType;
+        $data->employee_id  = $requ->employee_id;
         if($data->save()):
             return back()->with('success','Record successfully saved');
         else:

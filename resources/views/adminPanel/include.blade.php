@@ -74,6 +74,7 @@
                     <li class="list-group-item h5"><a class="text-success" href="{{ route('accountCreation') }}"><i class="fa-duotone fa-solid fa-address-card"></i> Create Account </a></li>
                     <li class="list-group-item h5"><a class="text-success" href="{{ route('acList') }}"><i class="fa-duotone fa-solid fa-users"></i> Account List </a></li>
                     <li class="list-group-item h5"><a class="text-success" href="{{ route('debitCredit') }}"><i class="fa-solid fa-calculator-simple"></i> Debit/Credit</a></li>
+                    <li class="list-group-item h5"><a class="text-success" href="{{ route('generateReport') }}"><i class="fa-sharp fa-light fa-file-chart-pie"></i> Generate Report</a></li>
                     <li class="list-group-item h5"><a class="text-success" href="{{ route('bankEmployee') }}"><i class="fa-solid fa-user-secret"></i> Bank Employee</a></li>
                     <li class="list-group-item h5"><a class="text-success" href="{{ route('serverConfig') }}"><i class="fa-solid fa-gears"></i> Settings</a></li>
                 </ul>

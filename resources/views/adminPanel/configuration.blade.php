@@ -59,9 +59,9 @@
                 @if(!empty($bankLogo))
                     <label class="mb-2 fw-bold" for="bankLogo">Bank Logo</label>
                     <div class="input-group mb-3">
-                        <img class="w50" src="{{ asset('/public/upload/logos/') }}/{{ $bankLogo }}" alt="{{ $businessBank }}">
+                        <img class="w-50" src="{{ asset('/public/upload/logos/') }}/{{ $bankLogo }}" alt="{{ $businessBank }}">
                     </div>
-                    <a href="{{ url('/') }}" class="btn btn-danger">Delete</a>
+                    <a href="{{ url('/') }}" class="btn btn-danger btn-sm">Delete</a>
                 @else
                 <form class="form" action="{{ route('saveBankLogo') }}" method="POST" enctype="multipart/form-data">
                     @csrf
@@ -83,9 +83,9 @@
                 @if(!empty($secondLogo))
                     <label class="mb-2 fw-bold" for="secondLogo">Bank Logo</label>
                     <div class="input-group mb-3">
-                        <img class="w50" src="{{ asset('/public/upload/logos/') }}/{{ $secondLogo }}" alt="{{ $businessBank }}">
+                        <img class="w-50" src="{{ asset('/public/upload/logos/') }}/{{ $secondLogo }}" alt="{{ $businessBank }}">
                     </div>
-                    <a href="{{ url('/') }}" class="btn btn-danger">Delete</a>
+                    <a href="{{ url('/') }}" class="btn btn-danger btn-sm">Delete</a>
                 @else
                 <form class="form" action="{{ route('saveBankLogo') }}" method="POST" enctype="multipart/form-data">
                     @csrf
@@ -107,9 +107,9 @@
                 @if(!empty($thirdLogo))
                     <label class="mb-2 fw-bold" for="thirdLogo">Bank Logo</label>
                     <div class="input-group mb-3">
-                        <img class="w50" src="{{ asset('/public/upload/logos/') }}/{{ $thirdLogo }}" alt="{{ $businessBank }}">
+                        <img class="w-50" src="{{ asset('/public/upload/logos/') }}/{{ $thirdLogo }}" alt="{{ $businessBank }}">
                     </div>
-                    <a href="{{ url('/') }}" class="btn btn-danger">Delete</a>
+                    <a href="{{ url('/') }}" class="btn btn-danger btn-sm">Delete</a>
                 @else
                 <form class="form" action="{{ route('saveBankLogo') }}" method="POST" enctype="multipart/form-data">
                     @csrf

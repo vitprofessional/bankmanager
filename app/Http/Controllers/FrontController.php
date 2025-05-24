@@ -22,11 +22,12 @@ class FrontController extends Controller
 
         $data = new AccountList();
 
-        $data->acName = $requ->acName;
-        $data->acNumber = $requ->acNo;
-        $data->acType = $requ->acType;
-        $data->acMobile = $requ->acMobile;
-        $data->acFinger = $requ->acFinger;
+        $data->acName       = $requ->acName;
+        $data->acNumber     = $requ->acNo;
+        $data->acType       = $requ->acType;
+        $data->acMobile     = $requ->acMobile;
+        $data->acFinger     = $requ->acFinger;
+        $data->employee_id  = $requ->employee_id;
 
         if($data->save()):
             return back()->with('success','Success! Account creation successfully');
@@ -49,12 +50,14 @@ class FrontController extends Controller
     public function acUpdate(Request $requ){
         $data = AccountList::find($requ->acId);
         if(isset($data)):
+            $employee_id        = $requ->employeeId;
 
-            $data->acName = $requ->acName;
-            $data->acNumber = $requ->acNo;
-            $data->acType = $requ->acType;
-            $data->acMobile = $requ->acMobile;
-            $data->acFinger = $requ->acFinger;
+            $data->acName       = $requ->acName;
+            $data->acNumber     = $requ->acNo;
+            $data->acType       = $requ->acType;
+            $data->acMobile     = $requ->acMobile;
+            $data->acFinger     = $requ->acFinger;
+            $data->employee_id  = $requ->employee_id;
 
             if($data->save()):
                 return back()->with('success','Success! Account update successfully');

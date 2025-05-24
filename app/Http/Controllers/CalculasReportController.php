@@ -14,9 +14,9 @@ class CalculasReportController extends Controller
     }
     
     public function getData(Request $requ){
-        $employee_id = 1;
-        $cDate      = date_create($requ->reportDate);
-        $dateToday  = date_format($cDate,'Y-m-d');
+        $employee_id    = $requ->employeeId;
+        $cDate          = date_create($requ->reportDate);
+        $dateToday      = date_format($cDate,'Y-m-d');
         
         $data   = BankCapital::whereDate('created_at',$dateToday)->where(['employee_id'=>$employee_id])->first();
 

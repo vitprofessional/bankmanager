@@ -31,7 +31,15 @@ class CalculasViewController extends Controller
         if(isset($data)):
             $hashPass   = $data->password;
             if(Hash::check($requ->loginPass,$hashPass)):
-                session()->put('calculas', $data->id);
+                if($data->profileType == 1):
+                    session()->put('superAdmin', $data->id);
+                elseif($data->profileType == 2):
+                    session()->put('generalAdmin', $data->id);
+                elseif($data->profileType == 3):
+                    session()->put('manager', $data->id);
+                else:
+                    session()->put('cashier', $data->id);
+                endif;
                 return redirect(route('home'));
             else:
                 return back()->with('error','Sorry! Wrong password provided');

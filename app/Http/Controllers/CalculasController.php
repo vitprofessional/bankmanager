@@ -17,14 +17,17 @@ class CalculasController extends Controller
     public function editCalculas($id){
         // $capitalId  = $id;
         $dateToday  = date('Y-m-d');
-        $data   = BankCapital::whereDate('created_at',$dateToday)->first();
+        $data   = BankCapital::find($id);
         return view('adminPanel.home',['data'=>$data,'capitalId'=>$id]);
     }
     
     public function saveCalculas(Request $requ){
+        $employee_id        = $requ->employeeId;
+
         $data = new BankCapital();
-        $data->ob   = $requ->liquid;
-        $data->cb   = $requ->handCash;
+        $data->ob           = $requ->liquid;
+        $data->cb           = $requ->handCash;
+        $data->employee_id  = $requ->employee_id;
         if($data->save()):
             return back()->with('success','Capital details saved successfully');
         else:
@@ -49,8 +52,17 @@ class CalculasController extends Controller
     }
     
     public function bankEmployee(){
-        $bankEmployee = BankEmployee::orderBy('id','desc')->get();
-        return view('adminPanel.createEmployee',['data'=>$bankEmployee]);
+        $employee_id        = $employeeId;
+        $profile = BankEmployee::find($employee_id);
+        if($profile->profileType == 1):
+            $bankEmployee = BankEmployee::orderBy('id','desc')->get();
+            return view('adminPanel.createEmployee',['data'=>$bankEmployee]);
+        elseif($profile->profileType == 2 || profile->profileType == 3):
+            $bankEmployee = BankEmployee::where(['creator'=>$employee_id])->orderBy('id','desc')->get();
+            return view('adminPanel.createEmployee',['data'=>$bankEmployee]);
+        else:
+            return "<div class='alert alert-info'>Sorry! you are not eligable to view this page</div>";
+        endif;
     }
 
     public function employeeRegister(Request $requ){

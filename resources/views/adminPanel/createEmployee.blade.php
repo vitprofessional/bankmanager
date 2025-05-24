@@ -19,7 +19,7 @@
                             </div>
                         @endif
                     </div>
-                    <form class="form col-11 mx-auto" action="{{ route('registerCalculas') }}" method="POST">
+                    <form class="form col-11 mx-auto" action="{{ route('createEmployee') }}" method="POST">
                         @csrf
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="employeeName"><i class="fa-thin fa-circle-user"></i></span>
@@ -36,6 +36,22 @@
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="loginPass"><i class="fa-thin fa-key"></i></span>
                             <input type="password" class="form-control" placeholder="Enter password" aria-label="loginPass" name="loginPass" aria-describedby="loginPass" required>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="profileType"><i class="fa-light fa-layer-group"></i></span>
+                            <select name="profileType" id="profileType" class="form-control">
+                                @if(Session::get('superAdmin'))
+                                <option value="4">Cashier</option>
+                                <option value="3">Manager</option>
+                                <option value="2">General Admin</option>
+                                <option value="1">Super Admin</option>
+                                @elseif(Session::get('generalAdmin'))
+                                <option value="4">Cashier</option>
+                                <option value="3">Manager</option>
+                                @else
+                                <option value="4">Cashier</option>
+                                @endif
+                            </select>
                         </div>
                         <div class="d-grid gap-2">
                             <button class="btn btn-success" type="submit">
