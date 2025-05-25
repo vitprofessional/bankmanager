@@ -40,7 +40,7 @@ Route::post('/login/confirm',[
 ])->name('loginCalculas');
 
 
-Route::middleware(['superAdmin'])->group(function(){
+Route::middleware(['superAdmin','manager','cashier','generalAdmin'])->group(function(){
     Route::get('/home',[
         CalculasController::class,
         'index'
@@ -70,26 +70,6 @@ Route::middleware(['superAdmin'])->group(function(){
         CalculasReportController::class,
         'getData'
     ])->name('getData');
-
-    Route::get('/employee/list',[
-        CalculasController::class,
-        'bankEmployee'
-    ])->name('bankEmployee');
-
-    Route::post('/register/employee',[
-        CalculasController::class,
-        'employeeRegister'
-    ])->name('employeeRegister');
-
-    Route::get('/employee/edit/{id}',[
-        DebitCreditController::class,
-        'editEmployee'
-    ])->name('editEmployee');
-
-    Route::get('/employee/del/{id}',[
-        DebitCreditController::class,
-        'delEmployee'
-    ])->name('delEmployee');
 
     Route::get('/debit-credit',[
         CalculasController::class,
@@ -146,7 +126,28 @@ Route::middleware(['superAdmin'])->group(function(){
         FrontController::class,
         'acDelete'
     ])->name('acDelete');
+});
 
+Route::middleware(['superAdmin','manager','generalAdmin'])->group(function(){
+    Route::get('/employee/list',[
+        CalculasController::class,
+        'bankEmployee'
+    ])->name('bankEmployee');
+
+    Route::post('/register/employee',[
+        CalculasController::class,
+        'employeeRegister'
+    ])->name('employeeRegister');
+
+    Route::get('/employee/edit/{id}',[
+        DebitCreditController::class,
+        'editEmployee'
+    ])->name('editEmployee');
+
+    Route::get('/employee/del/{id}',[
+        DebitCreditController::class,
+        'delEmployee'
+    ])->name('delEmployee');
 
     // server configuration routes
     Route::get('/server/configuratoin/',[
@@ -194,8 +195,13 @@ Route::middleware(['superAdmin'])->group(function(){
         'saveUserPass'
     ])->name('saveUserPass');
 
-    Route::get('/server/employee/create',[
+    Route::get('/server/employee',[
         CalculasViewController::class,
-        'employeeList'
+        'bankEmployee'
+    ])->name('employeeList');
+
+    Route::post('/server/employee/create',[
+        CalculasController::class,
+        'employeeRegister'
     ])->name('createEmployee');
 });

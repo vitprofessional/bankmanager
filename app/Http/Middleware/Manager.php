@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Session;
 
-class SuperAdmin
+class Manager
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class SuperAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Session::has('superAdmin') || Session::has('manager') || Session::has('generalAdmin') || Session::has('cashier')):
+        if(Session::has('superAdmin') || Session::has('manager') || Session::has('generalAdmin')):
             $x = "";
         else:
             return redirect(route('calculasLogin'))->with('error','Please login to continue');

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('password')->nullable();
             $table->text('employeeId')->nullable();
             $table->text('profileType')->nullable();
+            $table->text('creator')->nullable();
             $table->timestamps();
         });
     }

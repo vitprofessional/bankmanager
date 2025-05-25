@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\BankCapital;
 use App\Models\BankEmployee;
 use Session;
+use Hash;
 
 class CalculasController extends Controller
 {
@@ -72,8 +73,8 @@ class CalculasController extends Controller
         if($profile->profileType == 1):
             $bankEmployee = BankEmployee::orderBy('id','desc')->get();
             return view('adminPanel.createEmployee',['data'=>$bankEmployee]);
-        elseif($profile->profileType == 2 || profile->profileType == 3):
-            $bankEmployee = BankEmployee::where(['creator'=>$employee_id])->orderBy('id','desc')->get();
+        elseif($profile->profileType == 2 || $profile->profileType == 3):
+            $bankEmployee = BankEmployee::where(['creator'=>$employeeId])->orderBy('id','desc')->get();
             return view('adminPanel.createEmployee',['data'=>$bankEmployee]);
         else:
             return "<div class='alert alert-info'>Sorry! you are not eligable to view this page</div>";
@@ -87,6 +88,8 @@ class CalculasController extends Controller
         $data->employeeId   = $requ->loginId;
         $hashPass           = Hash::make($requ->loginPass);
         $data->password     = $hashPass;
+        $data->profileType  = $requ->profileType;
+        $data->creator      = $requ->employeeId;
         if($data->save()):
             return back()->with('success','Success! Employee details saved successfully');
         else:

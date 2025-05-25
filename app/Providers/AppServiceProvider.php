@@ -25,25 +25,28 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('*',function($view){
             if(Session::has('superAdmin')):
                 $employeeType = 1;
-                $employeeId = BankEmployee::find(Session::get('superAdmin'));
+                $employee = BankEmployee::find(Session::get('superAdmin'));
             elseif(Session::has('generalAdmin')):
                 $employeeType = 2;
-                $employeeId = BankEmployee::find(Session::get('generalAdmin'));
+                $employee = BankEmployee::find(Session::get('generalAdmin'));
             elseif(Session::has('manager')):
                 $employeeType = 3;
-                $employeeId = BankEmployee::find(Session::get('manager'));
+                $employee = BankEmployee::find(Session::get('manager'));
             else:
                 $employeeType = 4;
-                $employeeId = BankEmployee::find(Session::get('cashier'));
-            endif;
-            $server = ServerConfig::where(['employee_id'=>$employeeId])->first();
-            if(!empty($server) && $server->count()>0):
-                $employeeId = $server->id;
-            else:
-                $employeeId = '';
+                $employee = BankEmployee::find(Session::get('cashier'));
             endif;
             
-            $view->with(['serverData'=>$server,'employee_id'=>$employeeId]);
+            if(!empty($employee) && $employee->count()>0):
+                $employee_id = $employee->id;
+            else:
+                $employee_id = '';
+            endif;
+
+
+            $server = ServerConfig::where(['employee_id'=>$employee_id])->first();
+            
+            $view->with(['serverData'=>$server,'employee_id'=>$employee_id]);
         });
     }
 }

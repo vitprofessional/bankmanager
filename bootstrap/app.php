@@ -4,6 +4,9 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use App\Http\Middleware\SuperAdmin;
+use App\Http\Middleware\GeneralAdmin;
+use App\Http\Middleware\Manager;
+use App\Http\Middleware\Cashier;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -14,6 +17,9 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
             'superAdmin'    => SuperAdmin::class,
+            'generalAdmin'  => GeneralAdmin::class,
+            'manager'       => Manager::class,
+            'cashier'       => Cashier::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

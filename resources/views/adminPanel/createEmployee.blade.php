@@ -21,6 +21,7 @@
                     </div>
                     <form class="form col-11 mx-auto" action="{{ route('createEmployee') }}" method="POST">
                         @csrf
+                        <input type="hidden" name="employeeId" value="{{ $employee_id }}">
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="employeeName"><i class="fa-thin fa-circle-user"></i></span>
                             <input type="text" class="form-control" placeholder="Enter employee name" aria-label="employeeName" name="employeeName" aria-describedby="employeeName">

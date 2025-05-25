@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Session;
 
-class SuperAdmin
+class GeneralAdmin
 {
     /**
      * Handle an incoming request.
