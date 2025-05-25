@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\BankCapital;
 use App\Models\BankEmployee;
+use Session;
 
 class CalculasController extends Controller
 {
@@ -52,8 +53,22 @@ class CalculasController extends Controller
     }
     
     public function bankEmployee(){
-        $employee_id        = $employeeId;
-        $profile = BankEmployee::find($employee_id);
+        if(Session::has('superAdmin')):
+            $employeeType = 1;
+            $employeeId = BankEmployee::find(Session::get('superAdmin'))->id;
+        elseif(Session::has('generalAdmin')):
+            $employeeType = 2;
+            $employeeId = BankEmployee::find(Session::get('generalAdmin'))->id;
+        elseif(Session::has('manager')):
+            $employeeType = 3;
+            $employeeId = BankEmployee::find(Session::get('manager'))->id;
+        else:
+            $employeeType = 4;
+            $employeeId = BankEmployee::find(Session::get('cashier'))->id;
+        endif;
+
+
+        $profile = BankEmployee::find($employeeId);
         if($profile->profileType == 1):
             $bankEmployee = BankEmployee::orderBy('id','desc')->get();
             return view('adminPanel.createEmployee',['data'=>$bankEmployee]);

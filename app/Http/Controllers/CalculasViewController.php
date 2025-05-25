@@ -20,6 +20,7 @@ class CalculasViewController extends Controller
         $data->employeeId   = $requ->loginId;
         $hashPass           = Hash::make($requ->loginPass);
         $data->password     = $hashPass;
+        $data->profileType  = 1;
         if($data->save()):
             return back()->with('success','Success! Employee details saved successfully');
         else:

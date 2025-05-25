@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Models\ServerConfig;
+use App\Models\BankEmployee;
 use Session;
 
 class AppServiceProvider extends ServiceProvider
@@ -22,16 +23,20 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         view()->composer('*',function($view){
-            if(Session::get('superAdmin')):
+            if(Session::has('superAdmin')):
                 $employeeType = 1;
-            elseif(Session::get('generalAdmin')):
+                $employeeId = BankEmployee::find(Session::get('superAdmin'));
+            elseif(Session::has('generalAdmin')):
                 $employeeType = 2;
-            elseif(Session::get('manager')):
+                $employeeId = BankEmployee::find(Session::get('generalAdmin'));
+            elseif(Session::has('manager')):
                 $employeeType = 3;
+                $employeeId = BankEmployee::find(Session::get('manager'));
             else:
                 $employeeType = 4;
+                $employeeId = BankEmployee::find(Session::get('cashier'));
             endif;
-            $server = ServerConfig::where(['profileType'=>$employeeType])->first();
+            $server = ServerConfig::where(['employee_id'=>$employeeId])->first();
             if(!empty($server) && $server->count()>0):
                 $employeeId = $server->id;
             else:

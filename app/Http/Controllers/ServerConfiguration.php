@@ -14,7 +14,7 @@ class ServerConfiguration extends Controller
 
     public function saveServerConfig(Request $requ){
         if(!empty($requ->businessId)):
-            $server = ServerConfig::find($requ->businessId);
+            $server = ServerConfig::where(['employee_id'=>$requ->businessId])->first();
         else:
             $server = new ServerConfig();
         endif;
@@ -43,7 +43,7 @@ class ServerConfiguration extends Controller
 
     public function saveBankLogo(Request $requ){
         if(!empty($requ->businessId)):
-            $server = ServerConfig::find($requ->businessId);
+            $server = ServerConfig::where(['employee_id'=>$requ->businessId])->first();
         else:
             $server = new ServerConfig();
         endif;
@@ -69,7 +69,7 @@ class ServerConfiguration extends Controller
 
     public function saveSecondLogo(Request $requ){
         if(!empty($requ->businessId)):
-            $server = ServerConfig::find($requ->businessId);
+            $server = ServerConfig::where(['employee_id'=>$requ->businessId])->first();
         else:
             $server = new ServerConfig();
         endif;
@@ -93,7 +93,7 @@ class ServerConfiguration extends Controller
 
     public function saveThridLogo(Request $requ){
         if(!empty($requ->businessId)):
-            $server = ServerConfig::find($requ->businessId);
+            $server = ServerConfig::where(['employee_id'=>$requ->businessId])->first();
         else:
             $server = new ServerConfig();
         endif;
