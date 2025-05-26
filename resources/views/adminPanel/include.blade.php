@@ -75,8 +75,10 @@
                     <li class="list-group-item h5"><a class="text-success" href="{{ route('acList') }}"><i class="fa-duotone fa-solid fa-users"></i> Account List </a></li>
                     <li class="list-group-item h5"><a class="text-success" href="{{ route('debitCredit') }}"><i class="fa-solid fa-calculator-simple"></i> Debit/Credit</a></li>
                     <li class="list-group-item h5"><a class="text-success" href="{{ route('generateReport') }}"><i class="fa-sharp fa-light fa-file-chart-pie"></i> Generate Report</a></li>
+                    @if(Session::has('superAdmin') || Session::has('generalAdmin') || Session::has('manager'))
                     <li class="list-group-item h5"><a class="text-success" href="{{ route('bankEmployee') }}"><i class="fa-solid fa-user-secret"></i> Bank Employee</a></li>
                     <li class="list-group-item h5"><a class="text-success" href="{{ route('serverConfig') }}"><i class="fa-solid fa-gears"></i> Settings</a></li>
+                    @endif
                 </ul>
             </div>
         </div>
@@ -94,12 +96,14 @@
                             <!-- Example split danger button -->
                             <div class="btn-group">
                                 <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa-solid fa-circle-user"></i>
+                                <i class="fa-solid fa-circle-user"></i> {{ $employee->name }}
                                 </button>
                                 <ul class="dropdown-menu rounded-0">
                                 <li><a class="dropdown-item" href="{{ route('changeUserPass') }}"><i class="fa-thin fa-key"></i> Change Password</a></li>
                                 <li><a class="dropdown-item" href="{{ route('userProfile') }}"><i class="fa-thin fa-user"></i> Profile</a></li>
+                                @if(Session::has('superAdmin') || Session::has('generalAdmin') || Session::has('manager'))
                                 <li><a class="dropdown-item" href="{{ route('serverConfig') }}"><i class="fa-thin fa-server"></i> Server Configuration</a></li>
+                                @endif
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="{{ route('logoutCalculas') }}"><i class="fa-thin fa-right-from-bracket"></i> Logout</a></li>
                                 </ul>

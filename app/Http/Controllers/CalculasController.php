@@ -96,4 +96,46 @@ class CalculasController extends Controller
             return back()->with('error','Sorry! Employee details failed to save');
         endif;
     }
+
+    public function changeUserPass(){
+        return view('adminPanel.updatePassword');
+    }
+
+    public function updatePassword(Request $requ){
+        if($requ->newPass != $requ->confirmPass):
+            return back()->with('error','New password not match confirm password');
+        endif;
+        $chk = BankEmployee::find($requ->employeeId);
+        if(!empty($chk) && $chk->count()>0):
+            $hashPass   = $chk->password;
+            if(Hash::check($requ->loginPass,$hashPass)):
+                $newHashPass = Hash::make($requ->newPass);
+                $chk->password = $newHashPass;
+                $chk->save();
+                return back()->with('success','Password changed successfully');
+            else:
+                return back()->with('error','Old password not match');
+            endif;
+        else:
+            return back()->with('error','Sorry! profile not found for update');
+        endif;
+    }
+
+    public function userProfile(){
+        return view('adminPanel.profile');
+    }
+
+    public function updateEmployeeProfile(Request $requ){
+        $chk = BankEmployee::find($requ->employeeId);
+        if(!empty($chk) && $chk->count()>0):
+            $chk->name      = $requ->employeeName;
+            $chk->email     = $requ->employeeMail;
+            $chk->mobile    = $requ->employeeMobile;
+            $chk->save();
+            
+            return back()->with('success','Profile changed successfully');
+        else:
+            return back()->with('error','Sorry! profile not found for update');
+        endif;
+    }
 }

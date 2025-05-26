@@ -46,7 +46,7 @@ class AppServiceProvider extends ServiceProvider
 
             $server = ServerConfig::where(['employee_id'=>$employee_id])->first();
             
-            $view->with(['serverData'=>$server,'employee_id'=>$employee_id]);
+            $view->with(['serverData'=>$server,'employee'=> $employee, 'employee_id'=>$employee_id]);
         });
     }
 }

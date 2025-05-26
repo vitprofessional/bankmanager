@@ -126,6 +126,26 @@ Route::middleware(['superAdmin','manager','cashier','generalAdmin'])->group(func
         FrontController::class,
         'acDelete'
     ])->name('acDelete');
+
+    Route::get('/server/user/profile/',[
+        CalculasController::class,
+        'userProfile'
+    ])->name('userProfile');
+
+    Route::get('/server/user/password/change/',[
+        CalculasController::class,
+        'changeUserPass'
+    ])->name('changeUserPass');
+
+    Route::post('/server/user/profile/save/',[
+        CalculasController::class,
+        'updateEmployeeProfile'
+    ])->name('updateEmployeeProfile');
+
+    Route::post('/server/user/password/save/',[
+        CalculasController::class,
+        'updatePassword'
+    ])->name('updatePassword');
 });
 
 Route::middleware(['superAdmin','manager','generalAdmin'])->group(function(){
@@ -155,16 +175,6 @@ Route::middleware(['superAdmin','manager','generalAdmin'])->group(function(){
         'serverConfig'
     ])->name('serverConfig');
 
-    Route::get('/server/user/profile/',[
-        ServerConfiguration::class,
-        'userProfile'
-    ])->name('userProfile');
-
-    Route::get('/server/user/password/change/',[
-        ServerConfiguration::class,
-        'changeUserPass'
-    ])->name('changeUserPass');
-
     Route::post('/server/configuratoin/save',[
         ServerConfiguration::class,
         'saveServerConfig'
@@ -184,16 +194,6 @@ Route::middleware(['superAdmin','manager','generalAdmin'])->group(function(){
         ServerConfiguration::class,
         'saveThirdLogo'
     ])->name('saveThirdLogo');
-
-    Route::post('/server/user/profile/save/',[
-        ServerConfiguration::class,
-        'saveUserProfile'
-    ])->name('saveUserProfile');
-
-    Route::post('/server/user/password/save/',[
-        ServerConfiguration::class,
-        'saveUserPass'
-    ])->name('saveUserPass');
 
     Route::get('/server/employee',[
         CalculasViewController::class,

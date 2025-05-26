@@ -34,7 +34,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            @if($employee->count()>0)
+                            @if($allemployee->count()>0)
                             <form class="form col-11 mx-auto" action="{{ route('loginCalculas') }}" method="POST">
                                 @csrf
                                 <div class="input-group mb-3">

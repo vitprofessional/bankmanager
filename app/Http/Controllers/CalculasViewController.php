@@ -11,7 +11,7 @@ class CalculasViewController extends Controller
 {
     public function index(){
         $check  = BankEmployee::all();
-        return view('adminPanel.login',['employee'=>$check]);
+        return view('adminPanel.login',['allemployee'=>$check]);
     }
     public function registerCalculas(Request $requ){
         $data = new BankEmployee();
