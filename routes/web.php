@@ -160,12 +160,12 @@ Route::middleware(['superAdmin','manager','generalAdmin'])->group(function(){
     ])->name('employeeRegister');
 
     Route::get('/employee/edit/{id}',[
-        DebitCreditController::class,
+        FrontController::class,
         'editEmployee'
     ])->name('editEmployee');
 
     Route::get('/employee/del/{id}',[
-        DebitCreditController::class,
+        FrontController::class,
         'delEmployee'
     ])->name('delEmployee');
 
@@ -174,6 +174,21 @@ Route::middleware(['superAdmin','manager','generalAdmin'])->group(function(){
         ServerConfiguration::class,
         'serverConfig'
     ])->name('serverConfig');
+
+    Route::get('/server/bankLogo/del/{id}',[
+        ServerConfiguration::class,
+        'delBankLogo'
+    ])->name('delBankLogo');
+
+    Route::get('/server/secondLogo/del/{id}',[
+        ServerConfiguration::class,
+        'delSecondLogo'
+    ])->name('delSecondLogo');
+
+    Route::get('/server/thirdLogo/del/{id}',[
+        ServerConfiguration::class,
+        'delThirdLogo'
+    ])->name('delThirdLogo');
 
     Route::post('/server/configuratoin/save',[
         ServerConfiguration::class,

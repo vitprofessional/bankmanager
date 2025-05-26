@@ -23,6 +23,8 @@
                 </div>
             </div>
             @php
+                $dateToday  = date('Y-m-d');
+                $data   = \App\Models\BankCapital::whereDate('created_at',$dateToday)->where('employee_id',$employee_id)->first();
                 if(isset($data)):
                     $liquid         = $data->ob;
                     $handCash       = $data->cb;
@@ -74,6 +76,7 @@
                 @else
                 <form class="row g-3 card-body" method="POST" action="{{ route('saveCalculas') }}">
                     @csrf
+                    <input type="hidden" name="employeeId" value="{{ $employee_id }}">
                     <div class="col-12">
                         <label for="liquid" class="form-label">Liquid Balance</label>
                         <input type="number" class="form-control" name="liquid" id="liquid" placeholder="Enter the liquid of bank today" required />

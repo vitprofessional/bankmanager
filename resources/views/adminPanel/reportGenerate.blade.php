@@ -28,6 +28,7 @@
             
             <form class="row g-3 card-body" method="POST" action="{{ route('getData') }}">
                 @csrf
+                <input type="hidden" name="employeeId" value="{{ $employee_id }}">
                 <div class="col-12">
                     <label for="reportDate" class="form-label">Date</label>
                     <input type="date" class="form-control" name="reportDate" id="reportDate" placeholder="Enter the date of your query" required />

@@ -24,6 +24,7 @@
             </div>
             <form class="row g-3 card-body" method="POST" action="{{ route('saveAccount') }}">
                 @csrf
+                <input type="hidden" name="employeeId" value="{{ $employee_id }}">
                 <div class="col-12">
                     <label for="acName" class="form-label">Account Name</label>
                     <input type="text" class="form-control" name="acName" id="acName" placeholder="Enter the name of account holder" />

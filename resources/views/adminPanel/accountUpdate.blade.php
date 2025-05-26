@@ -4,7 +4,7 @@
 <div class="row align-items-center v-100">
     <div class="col-10 col-md-6 mx-auto my-4">
         <div class="row mb-2">
-            <div class="col-8 mx-auto text-center mt-4">
+            <div class="col-12 mx-auto text-center mt-4">
                 <a class="btn btn-success btn-sm noprint mx-auto" href="{{ route('accountCreation') }}"><i class="fas fa-plus"></i> Add New</a>
                 <a href="{{ route('acList') }}" class="btn btn-primary btn-sm noprint mx-auto"><i class="fas fa-users"></i> Account List</a>
                 <a href="{{ route('acView',['id'=>$data->id]) }}" class="btn btn-sm btn-success noprint mx-auto" title="View Data"><i class="fa-solid fa-eye"></i> View Data</a>
@@ -29,6 +29,7 @@
                 </div>
                 @if(isset($data))
                 <div class="row">
+                    @if($data->employee_id == $employee_id)
                     <form class="g-3 card-body" method="POST" action="{{ route('acUpdate') }}">
                         @csrf
                         <input type="hidden" name="acId" value="{{ $data->id }}">
@@ -75,6 +76,9 @@
                             <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                     </form>
+                    @else
+                        <div class="alert alert-info">Sorry! You are not the author to edit this account details.</div>
+                    @endif
                 </div>
                 @else
                 <div class="alert alert-info">

@@ -11,9 +11,7 @@ use Hash;
 class CalculasController extends Controller
 {
     public function index(){
-        $dateToday  = date('Y-m-d');
-        $data   = BankCapital::whereDate('created_at',$dateToday)->first();
-        return view('adminPanel.home',['data'=>$data]);
+        return view('adminPanel.home');
     }
     
     public function editCalculas($id){
@@ -29,7 +27,7 @@ class CalculasController extends Controller
         $data = new BankCapital();
         $data->ob           = $requ->liquid;
         $data->cb           = $requ->handCash;
-        $data->employee_id  = $requ->employee_id;
+        $data->employee_id  = $requ->employeeId;
         if($data->save()):
             return back()->with('success','Capital details saved successfully');
         else:

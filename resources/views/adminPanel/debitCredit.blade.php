@@ -20,7 +20,6 @@
                 </div>
             </div>
             @php
-                $employee_id = 1;
                 if(isset($data)):
                     $amount     = $data->amount;
                     $details    = $data->details;
@@ -36,6 +35,7 @@
             <form class="row g-3 card-body" method="POST" action="{{ route('saveDebitCredit') }}">
                 @csrf
                 <input type="hidden" value="{{ $dcId }}" name="dcId">
+                <input type="hidden" name="employeeId" value="{{ $employee_id }}">
                 <div class="col-12">
                     <label for="amount" class="form-label">Amount</label>
                     <input type="number" class="form-control" value="{{ $amount }}" name="amount" id="amount" placeholder="Enter the amount of transaction" />

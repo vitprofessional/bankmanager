@@ -18,7 +18,7 @@ class DebitCreditController extends Controller
         $data->amount       = $requ->amount;  
         $data->details      = $requ->note;  
         $data->txnType      = $requ->txnType;
-        $data->employee_id  = $requ->employee_id;
+        $data->employee_id  = $requ->employeeId;
         if($data->save()):
             return back()->with('success','Record successfully saved');
         else:

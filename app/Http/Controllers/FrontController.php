@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\AccountList;
+use App\Models\BankEmployee;
 
 class FrontController extends Controller
 {
@@ -27,7 +28,7 @@ class FrontController extends Controller
         $data->acType       = $requ->acType;
         $data->acMobile     = $requ->acMobile;
         $data->acFinger     = $requ->acFinger;
-        $data->employee_id  = $requ->employee_id;
+        $data->employee_id  = $requ->employeeId;
 
         if($data->save()):
             return back()->with('success','Success! Account creation successfully');
@@ -68,6 +69,16 @@ class FrontController extends Controller
             return back()->with('error','Sorry! no data found');
         endif;
         
+    }
+
+    public function acDel($id){
+        $acData = AccountList::find($id);
+    }
+
+    public function editEmployee($id){
+        $bankEmployee = BankEmployee::find($id);
+        $bankEmployee = BankEmployee::find($id);
+        return view('adminPanel.createEmployee',['profile'=>$bankEmployee]);
     }
 
 }

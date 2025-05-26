@@ -14,7 +14,7 @@ class ServerConfiguration extends Controller
 
     public function saveServerConfig(Request $requ){
         if(!empty($requ->businessId)):
-            $server = ServerConfig::where(['employee_id'=>$requ->businessId])->first();
+            $server = ServerConfig::find($requ->businessId);
         else:
             $server = new ServerConfig();
         endif;
@@ -43,7 +43,7 @@ class ServerConfiguration extends Controller
 
     public function saveBankLogo(Request $requ){
         if(!empty($requ->businessId)):
-            $server = ServerConfig::where(['employee_id'=>$requ->businessId])->first();
+            $server = ServerConfig::find($requ->businessId);
         else:
             $server = new ServerConfig();
         endif;
@@ -69,7 +69,7 @@ class ServerConfiguration extends Controller
 
     public function saveSecondLogo(Request $requ){
         if(!empty($requ->businessId)):
-            $server = ServerConfig::where(['employee_id'=>$requ->businessId])->first();
+            $server = ServerConfig::find($requ->businessId);
         else:
             $server = new ServerConfig();
         endif;
@@ -79,7 +79,7 @@ class ServerConfiguration extends Controller
         // check if second logo available
         if($requ->secondLogo):
             $logo2 = time().'.'.request()->secondLogo->getClientOriginalExtension();
-            request()->secondLogo->move(public_path('upload/logos'), $logo2);
+            request()->secondLogo->move(public_path('upload\logos'), $logo2);
             $server->logo_2 = $logo2;
         endif;
 
@@ -91,9 +91,9 @@ class ServerConfiguration extends Controller
         endif;
     }
 
-    public function saveThridLogo(Request $requ){
+    public function saveThirdLogo(Request $requ){
         if(!empty($requ->businessId)):
-            $server = ServerConfig::where(['employee_id'=>$requ->businessId])->first();
+            $server = ServerConfig::find($requ->businessId);
         else:
             $server = new ServerConfig();
         endif;

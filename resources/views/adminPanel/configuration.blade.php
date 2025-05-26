@@ -61,7 +61,7 @@
                     <div class="input-group mb-3">
                         <img class="w-50" src="{{ asset('/public/upload/logos/') }}/{{ $bankLogo }}" alt="{{ $businessBank }}">
                     </div>
-                    <a href="{{ url('/') }}" class="btn btn-danger btn-sm">Delete</a>
+                    <a href="{{ route('delBankLogo',['id'=>$businessId]) }}" class="btn btn-danger btn-sm">Delete</a>
                 @else
                 <form class="form" action="{{ route('saveBankLogo') }}" method="POST" enctype="multipart/form-data">
                     @csrf
@@ -81,16 +81,16 @@
             </div>
             <div class="col-4">
                 @if(!empty($secondLogo))
-                    <label class="mb-2 fw-bold" for="secondLogo">Bank Logo</label>
+                    <label class="mb-2 fw-bold" for="secondLogo">Additional Logo</label>
                     <div class="input-group mb-3">
                         <img class="w-50" src="{{ asset('/public/upload/logos/') }}/{{ $secondLogo }}" alt="{{ $businessBank }}">
                     </div>
-                    <a href="{{ url('/') }}" class="btn btn-danger btn-sm">Delete</a>
+                    <a href="{{ route('delSecondLogo',['id'=>$businessId]) }}" class="btn btn-danger btn-sm">Delete</a>
                 @else
-                <form class="form" action="{{ route('saveBankLogo') }}" method="POST" enctype="multipart/form-data">
+                <form class="form" action="{{ route('saveSecondLogo') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="businessId" value="{{ $businessId }}">
-                    <label class="mb-2 fw-bold" for="secondLogo">Second Logo</label>
+                    <label class="mb-2 fw-bold" for="secondLogo">Additional Logo</label>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="secondLogo"><i class="fa-brands fa-joomla"></i></span>
                         <input type="file" class="form-control" aria-label="secondLogo" name="secondLogo" aria-describedby="secondLogo" required>
@@ -105,13 +105,13 @@
             </div>
             <div class="col-4">
                 @if(!empty($thirdLogo))
-                    <label class="mb-2 fw-bold" for="thirdLogo">Bank Logo</label>
+                    <label class="mb-2 fw-bold" for="thirdLogo">Third Logo</label>
                     <div class="input-group mb-3">
                         <img class="w-50" src="{{ asset('/public/upload/logos/') }}/{{ $thirdLogo }}" alt="{{ $businessBank }}">
                     </div>
-                    <a href="{{ url('/') }}" class="btn btn-danger btn-sm">Delete</a>
+                    <a href="{{ route('delThirdLogo',['id'=>$businessId]) }}" class="btn btn-danger btn-sm">Delete</a>
                 @else
-                <form class="form" action="{{ route('saveBankLogo') }}" method="POST" enctype="multipart/form-data">
+                <form class="form" action="{{ route('saveThirdLogo') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="businessId" value="{{ $businessId }}">
                     <label class="mb-2 fw-bold" for="thirdLogo">Third Logo</label>

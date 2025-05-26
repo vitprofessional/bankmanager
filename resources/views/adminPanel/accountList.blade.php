@@ -35,11 +35,10 @@
                     </thead>
                     <tbody>
                         @php
-                        $employee_id = 1;
-                            $data   = \App\Models\AccountList::where(['employee_id'=>$employee_id])->orderBy('id','DESC')->get();
+                            $data   = \App\Models\AccountList::orderBy('id','DESC')->get();
                             $x = 1;
                         @endphp
-                        @if(!empty($data) && count((array)$data)>0)
+                        @if(!empty($data) && $data->count()>0)
                             @foreach($data as $d)
                                 <tr>
                                     <th scope="row">{{ $x }}</th>
@@ -48,8 +47,10 @@
                                     <td>{{ $d->acMobile }}</td>
                                     <td>
                                         <a href="{{ route('acView',['id'=>$d->id]) }}" class="btn btn-sm btn-info text-white" title="View Data"><i class="fa-solid fa-eye"></i></a>
+                                        @if($d->employee_id == $employee_id)
                                         <a href="{{ route('acEdit',['id'=>$d->id]) }}" class="btn btn-sm btn-success" title="Edit Data"><i class="fa-solid fa-file-pen"></i></a>
                                         <a href="{{ route('acDelete',['id'=>$d->id]) }}" onclick="confirm('Are you sure to delete this record?')" class="btn btn-sm btn-danger" title="Delete Record"><i class="fa-thin fa-trash-xmark"></i></a>
+                                        @endif
                                     </td>
                                 </tr>
                                 @php
