@@ -23,24 +23,51 @@
         <div class="col-8 col-md-6 mx-auto my-2 account">
             <div class="card">
                 <div class="card-header fw-bold">Account Details</div>
+                @if(!empty($serverData) && $serverData->count()>0)
+                @php
+                    $bankName           = $serverData->bank_name;
+                    $linked_branch      = $serverData->linked_branch;
+                    $branch_district    = $serverData->branch_district;
+                    $routing_number     = $serverData->routing_number;
+                    $swift_code         = $serverData->swift_code;
+                    $helpline           = $serverData->helpline;
+                    $bank_logo          = asset('/public/upload/logos/').'/'.$serverData->bank_logo;
+                    $secondLogo         = asset('/public/upload/logos/').'/'.$serverData->logo_2;
+                    $logo_3             = asset('/public/upload/logos/').'/'.$serverData->logo_3;
+                    $contactNo          = $serverData->contact_number;
+                @endphp
+                @else
+                @php
+                    $bankName           = "Dutch Banla Bank PLC";
+                    $linked_branch      = "Jhawtala SME/Krishi";
+                    $branch_district    = "Cumilla";
+                    $routing_number     = "090191161";
+                    $swift_code         = "DBBLBDDH";
+                    $helpline           = "16216";
+                    $bank_logo          = asset('/public/img/')."/bankLogo.png";
+                    $secondLogo         = asset('/public/img/')."/abLogo.jpg";
+                    $logo_3             = asset('/public/img/')."/rocket.jpg";
+                    $contactNo          = "01836994770";
+                @endphp
+                @endif
                 <div class="card-body">
                     <div class="row align-items-center p-2">
                         <div class="col-2">
-                            <img src="{{ asset('/public/img/') }}/abLogo.jpg" alt="ABLOGO" class="w-75">
+                            <img src="{{ $secondLogo }}" alt="{{ $bankName }}" class="w-75">
                         </div>
                         <div class="col-2">
-                            <img src="{{ asset('/public/img/') }}/bankLogo.png" alt="BankLogo" class="w-100">
+                            <img src="{{ $bank_logo }}" alt="{{ $bankName }}" class="w-100">
                         </div>
                         <div class="col-6">
-                            <h6 class="fw-bold mb-0">Dutch Bangla Bank Plc</h6>
+                            <h6 class="fw-bold mb-0">{{ $bankName }}</h6>
                         </div>
                         <div class="col-2">
-                            <img src="{{ asset('/public/img/') }}/rocket.jpg" alt="ROCKET" class="w-75">
+                            <img src="{{ $logo_3 }}" alt="{{ $bankName }}" class="w-75">
                         </div>
                         <div class="col-11 mx-auto text-center">
-                            <p class="mb-0"><b>Branch: </b> Jhawtala SME/Krishi, Cumilla</p>
-                            <p class="mb-0"><b>Routing Number: </b> 090191161, <b>SWIFT: </b> DBBLBDDH</p>
-                            <p class="mb-0"><b>Contact: </b> 01784989898,  <b>Helpline: </b> 16216</p>
+                            <p class="mb-0"><b>Branch: </b> {{ $linked_branch }}, Cumilla</p>
+                            <p class="mb-0"><b>Routing Number: </b> {{ $routing_number }}, <b>SWIFT: </b> {{ $swift_code }}</p>
+                            <p class="mb-0"><b>Contact: </b> {{ $contactNo }},  <b>Helpline: </b> {{ $helpline }}</p>
                         </div>
                     </div>
                     <table class="table table-bordered">

@@ -32,6 +32,7 @@ class ServerConfiguration extends Controller
         $server->routing_number     = $requ->routingNumber;
         $server->swift_code         = $requ->bankSwift;
         $server->helpline           = $requ->bankHelpline;
+        $server->employee_id        = $requ->businessId;
 
         // if configuration data save or not
         if($server->save()):
