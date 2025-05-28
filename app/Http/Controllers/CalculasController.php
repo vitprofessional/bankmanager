@@ -83,6 +83,10 @@ class CalculasController extends Controller
         if($requ->profileId):
             $data = BankEmployee::find($requ->profileId);
         else:
+            $chk = BankEmployee::where(['employeeId'=>$requ->loginId])->get();
+            if(!empty($chk) && $chk->count()>0):
+                return back()->with('error','Sorry! Employee already exist');
+            endif;
             $data = new BankEmployee();
         endif;
         $data->name         = $requ->employeeName;

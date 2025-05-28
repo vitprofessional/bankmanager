@@ -80,4 +80,13 @@ class FrontController extends Controller
         return view('adminPanel.createEmployee',['profile'=>$bankEmployee]);
     }
 
+    public function delEmployee($id){
+        $bankEmployee = BankEmployee::find($id);
+        if($bankEmployee->delete()):
+            return back()->with('success','Records successfully deleted');
+        else:
+            return back()->with('error','No records found for deleted');
+        endif;
+    }
+
 }

@@ -39,6 +39,7 @@
                     <form class="form col-11 mx-auto" action="{{ route('createEmployee') }}" method="POST">
                         @csrf
                         <input type="hidden" name="profileId" value="{{ $profileId }}">
+                        <input type="hidden" name="employeeId" value="{{ $employee_id }}">
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="employeeName"><i class="fa-thin fa-circle-user"></i></span>
                             <input type="text" class="form-control" placeholder="Enter employee name" aria-label="employeeName" value="{{ $userName }}" name="employeeName" aria-describedby="employeeName">
@@ -51,7 +52,7 @@
                             <span class="input-group-text" id="loginId"><i class="fa-thin fa-lock"></i></span>
                             <input type="text" class="form-control" placeholder="Enter login ID" aria-label="loginId" value="{{ $loginId }}" name="loginId" aria-describedby="loginId" required>
                         </div>
-                        @if(isset($profile) && $profile->count()==0)
+                        @if(!isset($profile))
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="loginPass"><i class="fa-thin fa-key"></i></span>
                             <input type="password" class="form-control" placeholder="Enter password" aria-label="loginPass" name="loginPass" aria-describedby="loginPass" required>
@@ -123,8 +124,12 @@
                                     <td>{{ $d->mobile }}</td>
                                     <td>@if($d->profileType==1) Super Admin @elseif($d->profileType==2) General Admin @elseif($d->profileType==3) Manager @else Cashier @endif</td>
                                     <td>
+                                        @if($d->id == $employee_id)
+                                        -
+                                        @else
                                         <a href="{{ route('editEmployee',['id'=>$d->id]) }}" class="btn btn-sm btn-success" title="Edit Data"><i class="fa-solid fa-file-pen"></i></a>
                                         <a href="{{ route('delEmployee',['id'=>$d->id]) }}" onclick="confirm('Are you sure to delete this record?')" class="btn btn-sm btn-danger" title="Delete Record"><i class="fa-thin fa-trash-xmark"></i></a>
+                                        @endif
                                     </td>
                                 </tr>
                                 @php
@@ -133,7 +138,7 @@
                             @endforeach
                         @else
                         <tr>
-                            <td colspan="5">Sorry! No data found</td>
+                            <td colspan="6">Sorry! No data found</td>
                         </tr>
                         @endif
                     </tbody>

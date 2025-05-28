@@ -39,12 +39,14 @@ class AppServiceProvider extends ServiceProvider
             
             if(!empty($employee) && $employee->count()>0):
                 $employee_id = $employee->id;
+                $creator = $employee->creator;
             else:
                 $employee_id = '';
+                $creator = "";
             endif;
 
 
-            $server = ServerConfig::where(['employee_id'=>$employee_id])->first();
+            $server = ServerConfig::where(['employee_id'=>$employee_id])->orWhere(['employee_id'=>$creator])->first();
             
             $view->with(['serverData'=>$server,'employee'=> $employee, 'employee_id'=>$employee_id]);
         });
