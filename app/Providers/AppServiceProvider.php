@@ -38,11 +38,11 @@ class AppServiceProvider extends ServiceProvider
             endif;
             
             if(!empty($employee) && $employee->count()>0):
-                $employee_id = $employee->id;
-                $creator = $employee->creator;
+                $employee_id    = $employee->id;
+                $creator        = $employee->creator;
             else:
-                $employee_id = '';
-                $creator = "";
+                $employee_id    = '';
+                $creator        = "";
             endif;
 
 
