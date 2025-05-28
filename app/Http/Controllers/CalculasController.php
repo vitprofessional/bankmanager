@@ -80,14 +80,20 @@ class CalculasController extends Controller
     }
 
     public function employeeRegister(Request $requ){
-        $data = new BankEmployee();
+        if($requ->profileId):
+            $data = BankEmployee::find($requ->profileId);
+        else:
+            $data = new BankEmployee();
+        endif;
         $data->name         = $requ->employeeName;
         $data->email        = $requ->employeeMail;
         $data->employeeId   = $requ->loginId;
-        $hashPass           = Hash::make($requ->loginPass);
-        $data->password     = $hashPass;
         $data->profileType  = $requ->profileType;
-        $data->creator      = $requ->employeeId;
+        if($requ->loginPass):
+            $hashPass           = Hash::make($requ->loginPass);
+            $data->password     = $hashPass;
+            $data->creator      = $requ->employeeId;
+        endif;
         if($data->save()):
             return back()->with('success','Success! Employee details saved successfully');
         else:

@@ -4,7 +4,7 @@
 <div class="row align-items-center v-100">
     <div class="col-10 col-md-6 mx-auto my-4">
         <div class="card">
-            <div class="card-header">New Employee</div>
+            <div class="card-header">@if(isset($profile)) Update @else New @endif Employee</div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-12">
@@ -33,6 +33,7 @@
                             $loginId        = "";
                             $mobile         = "";
                             $profileType    = "";
+                            $profileId      = "";
                         endif;
                     @endphp
                     <form class="form col-11 mx-auto" action="{{ route('createEmployee') }}" method="POST">
@@ -50,7 +51,7 @@
                             <span class="input-group-text" id="loginId"><i class="fa-thin fa-lock"></i></span>
                             <input type="text" class="form-control" placeholder="Enter login ID" aria-label="loginId" value="{{ $loginId }}" name="loginId" aria-describedby="loginId" required>
                         </div>
-                        @if(empty($profile) && $profile->count()==0)
+                        @if(isset($profile) && $profile->count()==0)
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="loginPass"><i class="fa-thin fa-key"></i></span>
                             <input type="password" class="form-control" placeholder="Enter password" aria-label="loginPass" name="loginPass" aria-describedby="loginPass" required>
@@ -75,10 +76,17 @@
                                 @endif
                             </select>
                         </div>
-                        <div class="d-grid gap-2">
+                        <div class="input-group mb-3">
+                            @if(isset($profile))
                             <button class="btn btn-success" type="submit">
-                                <i class="fa-solid fa-right-from-bracket fa-beat"></i> Create Profile
+                                <i class="fa-solid fa-right-from-bracket fa-beat"></i>  Update Profile
                             </button>
+                            <a href="{{ route('bankEmployee') }}" class="btn btn-primary">Go Back</a>
+                            @else
+                            <button class="btn btn-success" type="submit">
+                                <i class="fa-solid fa-right-from-bracket fa-beat"></i>  Create Profile
+                            </button>
+                            @endif
                         </div>
                     </form>
                 </div>

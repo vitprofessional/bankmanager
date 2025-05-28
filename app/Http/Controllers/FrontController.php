@@ -77,7 +77,6 @@ class FrontController extends Controller
 
     public function editEmployee($id){
         $bankEmployee = BankEmployee::find($id);
-        $bankEmployee = BankEmployee::find($id);
         return view('adminPanel.createEmployee',['profile'=>$bankEmployee]);
     }
 
