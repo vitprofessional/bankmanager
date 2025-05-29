@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ServerConfig;
+use File;
 
 class ServerConfiguration extends Controller
 {
@@ -113,6 +114,52 @@ class ServerConfiguration extends Controller
             return back()->with('success','Data saved successfully');
         else:
             return back()->with('error','Data failed to save');
+        endif;
+    }
+
+    public function delBankLogo($id){
+        $chk = ServerConfig::find($id);
+        if(!empty($chk)):
+            if (File::exists(public_path('upload/logos/'.$chk->bank_logo))) {
+                File::delete(public_path('upload/logos/'.$chk->bank_logo));
+            }
+            
+            $chk->bank_logo = "";
+            $chk->save();
+            return back()->with('success','Success! Picture deleted successfully');
+        else:
+            return back()->with('error','Opps! Picture failed to delete');
+        endif;
+    }
+
+    public function delSecondLogo($id){
+        $chk = ServerConfig::find($id);
+        if(!empty($chk)):
+            // return public_path('upload/logos/'.$chk->logo_2);
+            if (File::exists(public_path('upload/logos/'.$chk->logo_2))) {
+                File::delete(public_path('upload/logos/'.$chk->logo_2));
+            }
+            
+            $chk->logo_2 = "";
+            $chk->save();
+            return back()->with('success','Success! Picture deleted successfully');
+        else:
+            return back()->with('error','Opps! Picture failed to delete');
+        endif;
+    }
+
+    public function delThirdLogo($id){
+        $chk = ServerConfig::find($id);
+        if(!empty($chk)):
+            if (File::exists(public_path('upload/logos/'.$chk->logo_3))) {
+                File::delete(public_path('upload/logos/'.$chk->logo_3));
+            }
+            
+            $chk->logo_3 = "";
+            $chk->save();
+            return back()->with('success','Success! Picture deleted successfully');
+        else:
+            return back()->with('error','Opps! Picture failed to delete');
         endif;
     }
 }

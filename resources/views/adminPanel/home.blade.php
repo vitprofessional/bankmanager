@@ -6,6 +6,7 @@
 @endphp
 <div class="row align-items-center v-100">
     <div class="col-10 col-md-6 mx-auto my-4">
+        @if(Session::has('cashier'))
         <div class="card">
             <div class="card-header fw-bold">Cash Calcuals - {{ $today }}</div>
             <div class="row">
@@ -92,6 +93,11 @@
                 @endif
             @endif
         </div>
+        @else
+        <div class="alert alert-info">
+            Please login as cashier to do any cash related service. Admin can not work on calculas related work like Debit/Credit Page etc.
+        </div>
+        @endif
     </div>
 </div>
 @endsection

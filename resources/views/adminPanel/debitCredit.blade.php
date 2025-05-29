@@ -3,7 +3,8 @@
 @section('calculasBody')
 <div class="row align-items-center v-100">
     <div class="col-10 col-md-6 mx-auto my-4">
-        <div class="card">
+        @if(Session::has('cashier'))
+        <div class="card my-4">
             <div class="card-header">Debit/Credit Entry</div>
             <div class="row">
                 <div class="col-12">
@@ -59,9 +60,7 @@
                 </div>
             </form>
         </div>
-    </div>
-    <div class="col-10 mx-auto my-4">
-        <div class="card">
+        <div class="card my-4">
             <div class="card-header">Debit/Credit Details</div>
             <div class="card-body">
                 <table class="table table-striped">
@@ -105,6 +104,11 @@
                 </table>
             </div>
         </div>
+        @else
+        <div class="alert alert-info">
+            Please login as cashier to do any cash related service. Admin can not work on calculas related work like Debit/Credit Page etc.
+        </div>
+        @endif
     </div>
 </div>
 @endsection
