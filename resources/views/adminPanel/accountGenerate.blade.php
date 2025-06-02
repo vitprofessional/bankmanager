@@ -23,33 +23,41 @@
         <div class="col-8 col-md-6 mx-auto my-2 account">
             <div class="card">
                 <div class="card-header fw-bold">Account Details</div>
-                @if(!empty($serverData) && $serverData->count()>0)
                 @php
+                if(!empty($serverData) && $serverData->count()>0):
                     $bankName           = $serverData->bank_name;
                     $linked_branch      = $serverData->linked_branch;
                     $branch_district    = $serverData->branch_district;
                     $routing_number     = $serverData->routing_number;
                     $swift_code         = $serverData->swift_code;
                     $helpline           = $serverData->helpline;
-                    $bank_logo          = asset('/public/upload/logos/').'/'.$serverData->bank_logo;
-                    $secondLogo         = asset('/public/upload/logos/').'/'.$serverData->logo_2;
-                    $logo_3             = asset('/public/upload/logos/').'/'.$serverData->logo_3;
+                    if(!empty($serverData->bank_logo)):
+                        $bank_logo          = asset('/public/upload/logos/').'/'.$serverData->bank_logo;
+                    else:
+                        $bank_logo          = asset('/public/img/')."/bankLogo.png";
+                    endif;
+                    if(!empty($serverData->logo_2)):
+                        $secondLogo         = asset('/public/upload/logos/').'/'.$serverData->logo_2;
+                    else:
+                        $secondLogo         = asset('/public/img/')."/abLogo.jpg";
+                    endif;
+                    if(!empty($serverData->logo_3)):
+                        $logo_3             = asset('/public/upload/logos/').'/'.$serverData->logo_3;
+                    else:
+                        $logo_3             = asset('/public/img/')."/rocket.jpg";
+                    endif;
+                    
                     $contactNo          = $serverData->contact_number;
-                @endphp
-                @else
-                @php
+                else:
                     $bankName           = "Dutch Banla Bank PLC";
                     $linked_branch      = "Jhawtala SME/Krishi";
                     $branch_district    = "Cumilla";
                     $routing_number     = "090191161";
                     $swift_code         = "DBBLBDDH";
                     $helpline           = "16216";
-                    $bank_logo          = asset('/public/img/')."/bankLogo.png";
-                    $secondLogo         = asset('/public/img/')."/abLogo.jpg";
-                    $logo_3             = asset('/public/img/')."/rocket.jpg";
                     $contactNo          = "01836994770";
+                endif;
                 @endphp
-                @endif
                 <div class="card-body">
                     <div class="row align-items-center p-2">
                         <div class="col-2">
